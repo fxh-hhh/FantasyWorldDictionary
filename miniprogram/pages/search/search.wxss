@@ -1,0 +1,11 @@
+/* pages/search/search.wxss */
+.tittle{
+  font-size:40px;
+  font-weight: 600;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  text-align: center;
+  line-height: 1.6;
+  }
+  .searchbar-result{margin-top:0;font-size:14px}
+  .searchbar-result .weui-cell__bd{padding:2px 0 2px 20px;color:var(--weui-FG-1)}
+  .searchbar-result:before{display:none}

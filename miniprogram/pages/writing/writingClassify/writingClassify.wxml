@@ -1,0 +1,11 @@
+<!--pages/writing/writingClassify/writingClassify.wxml-->
+<view class="mainTitle">想要创作什么类型的词条？</view>
+<view class="index-link">
+<navigator url="./../writingDefinition/writingDefinition" class="item-link">概念类词条>></navigator>
+</view>
+<view class="index-link">
+<navigator url="./../writingCharacter/writingCharacter" class="item-link">人物类词条>></navigator>
+</view>
+<view class="index-link">
+<navigator url="./../writingEvent/writingEvent" class="item-link">事件类词条>></navigator>
+</view>

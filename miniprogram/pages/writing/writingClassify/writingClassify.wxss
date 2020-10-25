@@ -1,0 +1,16 @@
+/* pages/writing/writingClassify/writingClassify.wxss */
+.mainTitle
+{
+  font-size: 30px;
+}
+.item-link
+{
+  text-align: center;
+  margin: 40px;
+  padding:10px 15px;
+  background-color: #1e89e0;
+  color: rgb(255, 255, 255);
+  font-size:25px;
+  font-weight: 500;
+  border-radius: 4px;
+}

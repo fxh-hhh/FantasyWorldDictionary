@@ -1,0 +1,10 @@
+<!--pages/mainPage/mainPage.wxml-->
+<view class="mainTitle">欢迎来到幻世辞~</view>
+<view class="secondTitle">幻想世界辞典</view>
+<view class="secondTitle">Fantasy World Dictionary</view>
+<navigator class="introduction" url="./../mainPage/introduction/introduction">点这里看小程序简介>></navigator>
+<navigator class="todayWord" url="./../todayWordIndex/todayWordIndex">今日热词>>
+</navigator>
+<navigator class="thirdTitle" url="./../definitionIndex/definitionIndex">概念类词条>></navigator>
+<navigator class="thirdTitle" url="./../characterIndex/characterIndex">人物类词条>></navigator>
+<navigator class="thirdTitle" url="./../eventIndex/eventIndex">事件类词条>></navigator>
