@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    inputShowed: false,
+    inputVal: ""
   },
 
   /**
@@ -62,5 +63,30 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    })
+  },
+
+  hideInput: function () {
+    this.setData({
+      inputShowed: false,
+      inputVal: ""
+    })
+  },
+
+  inputTyping: function (event) {
+    this.setData({
+      inputVal: event.detail.value
+    })
+  },
+
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    })
   }
 })
