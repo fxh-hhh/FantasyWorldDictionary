@@ -1,3 +1,0 @@
-<!--pages/characterIndex/characterIndex.wxml-->
-<view class="title">人物类词条-索引页</view>
-<view>按拼音首字母索引</view>

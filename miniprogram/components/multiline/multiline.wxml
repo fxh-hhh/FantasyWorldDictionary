@@ -1,0 +1,3 @@
+<!--components/multiline/multiline.wxml-->
+<textarea class="weui-textarea" placeholder="{{placeholder}}" style="height: 20em" bindinput="input" value="{{str}}" maxlength="{{maxlength}}" />
+<view class="weui-textarea-counter">{{str.length}}/{{maxlength}}</view>

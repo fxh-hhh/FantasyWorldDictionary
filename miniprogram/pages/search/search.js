@@ -6,7 +6,8 @@ Page({
    */
   data: {
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    searchres: []
   },
 
   /**
@@ -79,8 +80,36 @@ Page({
   },
 
   inputTyping: function (event) {
+    let key = event.detail.value.replace(" ","");
     this.setData({
-      inputVal: event.detail.value
+      inputVal: key
+    }, res => {
+      if (key.length > 0) {
+        this.search(key)
+      }
+    })
+  },
+
+  search: function (key) {
+    let db = wx.cloud.database();
+    let anychar = ".*"
+    let str = anychar + key.split("").join(anychar) + anychar;
+    let reg = db.RegExp({
+      regexp: str,
+      options: 'i'
+    })
+    let collect = db.collection("records");
+    collect.where({
+      call: reg
+    }).get().then(res => {
+      this.setData({
+        searchres: res.data.map(v => {
+          return {
+            call: v.call,
+            id: v._id
+          }
+        })
+      })
     })
   },
 
@@ -88,5 +117,9 @@ Page({
     this.setData({
       inputVal: ""
     })
+  },
+
+  test: function(event){
+    console.log(event);
   }
 })

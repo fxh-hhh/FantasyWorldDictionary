@@ -26,12 +26,12 @@
             "disablePlugins": [],
             "outputPath": ""
         },
-        "enableEngineNative": false,
         "useIsolateContext": true,
         "useCompilerModule": true,
         "userConfirmedUseCompilerModuleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
+        "enableEngineNative": false,
         "minifyWXSS": true
     },
     "appid": "wxc6b320867ac3e32e",

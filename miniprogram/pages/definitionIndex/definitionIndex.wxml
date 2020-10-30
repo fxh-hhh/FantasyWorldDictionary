@@ -1,4 +1,0 @@
-<!--pages/definitionIndex/definitionIndex.wxml-->
-<view class="mainTitle">概念类词条-索引页</view>
-<view class="secondTitle">按拼音首字母索引</view>
-<navigator url="./../definition/definition">游戏</navigator>

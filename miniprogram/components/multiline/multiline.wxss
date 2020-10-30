@@ -1,0 +1,2 @@
+/* components/multiline/multiline.wxss */
+@import "../../style/weui.wxss"

@@ -1,0 +1,2 @@
+<!--pages/mainPage/wordClause/wordClause.wxml-->
+<text>名称:{{clausedata.call}}</text>

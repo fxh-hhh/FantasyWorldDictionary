@@ -1,7 +1,0 @@
-<!--index.wxml-->
-
-<block wx:for="{{pageinfos}}" wx:key="id">
-  <navigator url="../../pages/main/main?itemid={{item.id}}" open-type="navigate">
-    {{item.head.main.name}}
-  </navigator>
-</block>

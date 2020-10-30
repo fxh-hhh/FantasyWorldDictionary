@@ -15,5 +15,6 @@
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
   text-align: left;
   line-height: 1.6;
-  color: rgb(2, 2, 2)
+  color: rgb(2, 2, 2);
+  margin: 20px;
 }

@@ -1,18 +1,22 @@
 // pages/writing/writingClassify/writingClassify.js
+
+let {writechoice} = require("../../../json/writechoice.js")
+//import writechoice from "../../../json/writechoice.js" 
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    writechoice,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
