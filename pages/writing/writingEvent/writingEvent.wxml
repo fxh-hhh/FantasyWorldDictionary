@@ -1,0 +1,42 @@
+<!--pages/writing/writingEvent/writingEvent.wxml-->
+<view class="weui-cells__title">事件名称</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_active">
+    <view class="weui-cell__bd">
+      <input class="weui-input" placeholder="请输入文本" />
+    </view>
+  </view>
+</view>
+
+<view class="weui-cells__title">事件发生时间</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_active">
+    <view class="weui-cell__bd">
+      <input class="weui-input" placeholder="如：2000.01.01" />
+    </view>
+  </view>
+</view>
+
+<view class="weui-cells__title">事件结束时间</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_active">
+    <view class="weui-cell__bd">
+      <input class="weui-input" placeholder="如：2000.01.01" />
+    </view>
+  </view>
+</view>
+
+<view class="weui-cells__title">事件描述</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_active">
+    <view class="weui-cell__bd">
+      <textarea class="weui-textarea" placeholder="请输入文本" style="height: 20em" />
+      <view class="weui-textarea-counter">0/1000</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="showTopTips">确定上传</button>
+        </view>
+<view>{{onLoad.options}}</view>

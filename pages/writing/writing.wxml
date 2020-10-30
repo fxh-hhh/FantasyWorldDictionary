@@ -1,0 +1,56 @@
+<!--pages/writing/writing.wxml-->
+<view class="mainTitle">词条创作指南
+  <view id="firstBlock">
+    <view class="secondTitle">一些基础设定：
+      <view class="content">1、目前地图范围仅限地球
+        <view class="annotation">词条达到一定数量后会扩展地图的哦</view>
+      </view>
+      <view class="content">2、时间轴从零开始，时间计量方式与现实时间相同
+        <view class="annotation">词条时间格式采用“幻纪元 xx年 xx月 xx天”</view>
+      </view>
+      <view class="content">3、幻想世界有一切现实生活中已有的概念
+        <view class="annotation">比如“桌子”，“电脑”</view>
+      </view>
+      <view class="content">4、除了现实生活中已有概念，幻想世界的一切都需要通过增加词条来形成
+        <view class="annotation">你写了什么，幻想世界就会发生什么！</view>
+      </view>
+    </view>
+    <view class="secondTitle">几条准则：
+      <view class="content">1、新建词条必须符合现有词条逻辑
+        <view class="annotation">比如：已经被恶龙杀死的勇士就不可能去救公主（除非复活他：）</view>
+      </view>
+      <view class="content">2、幻想世界观中，时间是单向流动的
+        <view class="annotation">时间旅行是被禁止的！（为了给新人更好的体验）</view>
+      </view>
+      <view class="content">3、除了已有的词条，现实中没有的概念需要另立词条解释
+        <view class="annotation">比如“龙”，“精灵”,“星际战舰”等</view>
+      </view>
+      <view class="content">4、事件类词条必须包含事件发生时间
+        <view class="annotation">将会以时间作为排序与检索方式</view>
+      </view>
+      <view class="content">5、禁止进行或传播一切违法或恶意行为！
+        <view class="annotation">正义的管理员会仔细审查每个词条，严重者将被记入黑名单</view>
+      </view>
+    </view>
+    <view class="secondTitle">一些创作建议:
+      <view class="content">1、多阅读已有词条
+        <view class="annotation">通过已有词条了解现有的世界观，获取灵感，防止出现逻辑错误</view>
+      </view>
+      <view class="content">2、词条要尽量短小精悍
+        <view class="annotation">避免长篇大论，要创作长内容可以将之拆分成一个概括性词条和多个细节词条</view>
+      </view>
+      <view class="content">3、清晰的描述
+        <view class="annotation">首先你得让人看得懂，对吧？</view>
+      </view>
+      <view class="content">4、如果你不希望耗费大量时间创作，人物和事件类词条最好能够引用一些已有词条
+        <view class="annotation">与其他词条联系越多，你的作品就越有可能被人读到。同时，与现有词条没有关联意味着你想要开发一系列全新的故事，这需要一系列相关词条支撑，要做好铺垫哦。</view>
+      </view>
+      <view class="content">4、但是也不要引用太多
+        <view class="annotation">我想没什么人愿意读一篇全是术语的文章吧？</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="index-link">
+<navigator url="./../writing/writingClassify/writingClassify" class="item-link">我明白了！开始创作>></navigator>
+</view>

@@ -1,0 +1,3 @@
+<!--pages/characterIndex/characterIndex.wxml-->
+<view class="mainTitle">人物类词条-索引页</view>
+<view class="secondTitle">按拼音首字母索引</view>

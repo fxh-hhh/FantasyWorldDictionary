@@ -1,0 +1,10 @@
+<!--pages/userPage/userPage.wxml-->
+<view>登录信息模块</view>
+<view class="weui-cells weui-cells_after-title">
+  <block wx:for="{{listnames}}" wx:for-item="listnames">
+    <navigator url="{{listnames.listUrl}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd"></view>
+      <view class="weui-cell__bd">{{listnames.title}}</view>
+    </navigator>
+  </block>
+</view>

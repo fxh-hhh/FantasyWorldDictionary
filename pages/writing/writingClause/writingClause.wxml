@@ -1,0 +1,37 @@
+<!--pages/writing/writingClouse/writingClouse.wxml-->
+<view wx:if="{{id==3}}">
+  <block wx:for="{{event}}" wx:for-item="event">    
+    <view class="weui-cells__title">{{event.field}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="{{event.default}}" />
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<view wx:if="{{id==2}}">
+  <block wx:for="{{character}}" wx:for-item="character">    
+    <view class="weui-cells__title">{{character.field}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="{{character.default}}" />
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<view wx:if="{{id==1}}">
+  <block wx:for="{{definition}}" wx:for-item="definition">    
+    <view class="weui-cells__title">{{definition.field}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="{{definition.default}}" />
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

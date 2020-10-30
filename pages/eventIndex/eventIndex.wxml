@@ -1,0 +1,4 @@
+<!--pages/eventIndex/eventIndex.wxml-->
+<view class="mainTitle">事件类词条-索引页</view>
+<view class="secondTitle">按拼音首字母排序</view>
+<view class="secondTitle">按事件时间排序</view>

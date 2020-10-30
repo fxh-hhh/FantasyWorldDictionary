@@ -1,0 +1,40 @@
+/* pages/mainPage/mainPage.wxss */
+
+.todayWord
+{
+  font-size:20px;
+  font-weight: 600;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  line-height: 1.6;
+  margin: 10px;
+  padding:10px 15px;
+  background-color: rgb(247, 110, 167);
+  color: #fff;
+  border-radius: 4px;
+}
+.thirdTitle
+{
+  font-size:20px;
+  font-weight: 600;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  line-height: 1.6;
+  color: rgb(2, 2, 2);
+  margin: 10px;
+  padding:10px 15px;
+  background-color: #4ea6ec;
+  color: #fff;
+  border-radius: 4px
+}
+.introduction
+{
+  font-size:20px;
+  font-weight: 500;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  line-height: 1.6;
+  color: rgb(2, 2, 2);
+  margin: 10px;
+  padding:10px 15px;
+  background-color: #fbfbfd;
+  color: rgb(3, 3, 3);
+  border-radius: 4px
+}
