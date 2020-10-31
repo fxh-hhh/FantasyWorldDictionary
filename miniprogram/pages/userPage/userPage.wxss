@@ -1,30 +1,30 @@
 /* pages/userPage/userPage.wxss */
 @import "../../style/weui.wxss";
 
-.background
-{
-  background-color:#dae7d9;
-  height: 30vh;
+.background {
+    background-color: #dae7d9;
+    height: 30vh;
 }
-.userInfo
-{
-  font-size: 30px;
-  padding-top:50px;
-  color: rgb(102, 101, 101);
+
+.userInfo {
+    font-size: 30px;
+    padding-top: 50px;
+    color: rgb(102, 101, 101);
 }
-.userHead
-{
-  width: 80px;
-  height: 80px;
-  border-radius: 100%;
-  margin-top:20px;
-  margin-left: 40%;
-  margin:center;
+
+.userHead {
+    display: flex;
+    justify-content: center;
 }
-.userNickname
-{
-  font-size:20px;
-  text-align: center;
-  padding:15px;
-  color:rgb(139, 68, 1)
+.userHead image{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+
+.userNickname {
+    font-size: 20px;
+    text-align: center;
+    /* padding:15px; */
+    color: rgb(139, 68, 1)
 }

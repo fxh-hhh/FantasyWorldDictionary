@@ -1,8 +1,17 @@
 <!--pages/userPage/userPage.wxml-->
-<button wx:if="{{!onlogin}}" open-type="getUserInfo" bindgetuserinfo="login">点击登陆</button>
-<block wx:else>
-  <image src="{{userdata.headimage}}" mode="widthFix"></image>
-</block>
+<view class="background">
+  <view class="userHead">
+    <image src="{{userdata && userdata.headimage ? userdata.headimage : '../../images/user-unlogin.png'}}"></image>
+  </view>
+  <block wx:if="{{!onlogin}}">
+    <button type="primary" open-type="getUserInfo" bindgetuserinfo="login">
+      点击登陆
+    </button>
+  </block>
+  <block wx:else>
+    <view class="userNickname">昵称：{{userdata.nickname}}</view>
+  </block>
+</view>
 <view class="weui-cells weui-cells_after-title">
   <block wx:for="{{listnames}}" wx:for-item="listnames" wx:key="listUrl">
     <navigator url="{{listnames.listUrl}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
