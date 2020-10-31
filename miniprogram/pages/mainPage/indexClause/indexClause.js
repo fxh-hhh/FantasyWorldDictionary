@@ -24,12 +24,7 @@ Page({
         }).get().then(res => {
             this.setData({
                 type: getchoice(type).clausetype,
-                allclause: res.data.map(v => {
-                    return {
-                        ...v,
-                        jsondata: encodeURI(JSON.stringify(v))
-                    }
-                })
+                allclause: res.data
             })
             console.log(res.data);
         })

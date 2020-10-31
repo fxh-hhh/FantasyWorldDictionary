@@ -1,0 +1,14 @@
+/* components/clausenavigator/clausenavigator.wxss */
+
+.wordNavigator
+{
+  font-size:20px;
+  font-weight: 500;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  line-height: 1.6;
+  margin: 2px;
+  padding:10px 15px;
+  background-color: rgb(252, 252, 252);
+  color: rgb(80, 79, 79);
+  border-radius: 4px
+}

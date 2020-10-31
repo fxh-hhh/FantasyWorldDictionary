@@ -1,6 +1,5 @@
 <!--pages/userPage/userCreations/userCreations.wxml-->
-<block wx:for="{{worksinfo}}" wx:key="_id">
-    <view>
-        <navigator url="../../mainPage/wordClause/wordClause?id={{item._id}}">{{item.call}}</navigator>
-    </view>
-</block>
+<view class="secondTitle">我创作的词条</view>
+<view wx:for="{{worksinfo}}" wx:key="_id">
+    <wnavigator clausedata="{{item}}"></wnavigator>
+</view>

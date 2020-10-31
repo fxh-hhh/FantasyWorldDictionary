@@ -1,1 +1,9 @@
 /* pages/mainPage/wordClause/wordClause.wxss */
+.wordSecondTitle
+{
+  font-size:25px;
+  font-weight: 500;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  line-height: 1.6;
+  color: rgb(90, 26, 0)
+}

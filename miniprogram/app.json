@@ -1,57 +1,60 @@
 {
-    "pages": [
-        "pages/mainPage/mainPage",
-        "pages/mainPage/indexClause/indexClause",
-        "pages/mainPage/wordClause/wordClause",
-        "pages/mainPage/todayWordIndex/todayWordIndex",
+  "pages": [
+    "pages/mainPage/mainPage",
+    "pages/mainPage/indexClause/indexClause",
+    "pages/mainPage/wordClause/wordClause",
+    "pages/mainPage/todayWordIndex/todayWordIndex",
 
-        "pages/search/search",
+    "pages/search/search",
 
-        "pages/userPage/userPage",
-        "pages/userPage/userCollections/userCollections",
-        "pages/userPage/userCreations/userCreations",
-        "pages/userPage/recentBrowse/recentBrouse",
-        "pages/userPage/contactDeveloper/contactDeveloper",
-        
-        "pages/writing/writing",
-        "pages/writing/writingClassify/writingClassify",
-        "pages/writing/writingClause/writingClause"
-    ],
-    "window": {
-        "backgroundColor": "#F6F6F6",
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#F6F6F6",
-        "navigationBarTitleText": "幻世辞",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "list": [
-            {
-                "pagePath": "pages/mainPage/mainPage",
-                "text": "主页",
-                "iconPath": "icons/picture1.png",
-                "selectedIconPath": "icons/picture1selected.png"
-            },
-            {
-                "pagePath": "pages/search/search",
-                "text": "搜索",
-                "iconPath": "icons/picture2.png",
-                "selectedIconPath": "icons/picture2selected.png"
-            },
-            {
-                "pagePath": "pages/writing/writing",
-                "text": "写作",
-                "iconPath": "icons/picture3.png",
-                "selectedIconPath": "icons/picture3selected.png"
-            },
-            {
-                "pagePath": "pages/userPage/userPage",
-                "text": "我的",
-                "iconPath": "icons/picture4.png",
-                "selectedIconPath": "icons/picture4selected.png"
-            }
-        ]
-    },
-    "sitemapLocation": "sitemap.json",
-    "style": "v2"
+    "pages/userPage/userPage",
+    "pages/userPage/userCollections/userCollections",
+    "pages/userPage/userCreations/userCreations",
+    "pages/userPage/recentBrowse/recentBrouse",
+    "pages/userPage/contactDeveloper/contactDeveloper",
+
+    "pages/writing/writing",
+    "pages/writing/writingClassify/writingClassify",
+    "pages/writing/writingClause/writingClause"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "幻世辞",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [{
+        "pagePath": "pages/mainPage/mainPage",
+        "text": "主页",
+        "iconPath": "icons/picture1.png",
+        "selectedIconPath": "icons/picture1selected.png"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "搜索",
+        "iconPath": "icons/picture2.png",
+        "selectedIconPath": "icons/picture2selected.png"
+      },
+      {
+        "pagePath": "pages/writing/writing",
+        "text": "写作",
+        "iconPath": "icons/picture3.png",
+        "selectedIconPath": "icons/picture3selected.png"
+      },
+      {
+        "pagePath": "pages/userPage/userPage",
+        "text": "我的",
+        "iconPath": "icons/picture4.png",
+        "selectedIconPath": "icons/picture4selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "usingComponents": {
+    "mline": "components/multiline/multiline",
+    "wnavigator": "components/clausenavigator/clausenavigator"
+  }
 }

@@ -1,4 +1,6 @@
 <!--pages/mainPage/wordClause/wordClause.wxml-->
+<view class="mainTitle">{{clausedata.call}}</view>
 <block wx:for="{{clausedata.fields}}" wx:key="key">
-    <text>{{item.field}}:{{item.value}}</text>
+    <view class="wordSecondTitle">{{item.field}}</view>
+    <view class="content">{{item.value}}</view>
 </block>

@@ -1,2 +1,2 @@
 <!--pages/userPage/userCollections/userCollections.wxml-->
-<text>pages/userPage/userCollections/userCollections.wxml</text>
+<view class="secondTitle">我收藏的词条</view>

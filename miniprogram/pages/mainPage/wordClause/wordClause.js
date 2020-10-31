@@ -1,3 +1,5 @@
+const { getuserindb } = require("../../../utils/getuserindb");
+
 // pages/mainPage/wordClause/wordClause.js
 Page({
 
@@ -13,6 +15,7 @@ Page({
      */
     onLoad: function (options) {
         if ("id" in options) {
+            //拉取数据
             let {
                 id
             } = options;
@@ -22,11 +25,31 @@ Page({
                 this.setData({
                     clausedata: res.data
                 })
-            })
-        } else if ("data" in options) {
-            let clausedata = JSON.parse(decodeURI(options.data));
+
+                //处理用户最近浏览
+                let {
+                    globalData
+                } = getApp();
+                if (globalData.onlogin) {
+                    getuserindb(globalData.wxid).then(res => {
+                        res.ref.update({
+                            data: {
+                                history: wx.cloud.database().command.unshift({
+                                    id,
+                                    timestamp: (new Date).getTime()
+                                })
+                            }
+                        })
+                    })
+                }
+            }).catch(() => {
+                this.setData({
+                    iderr: true
+                })
+            });
+        } else {
             this.setData({
-                clausedata
+                iderr: true
             })
         }
     },

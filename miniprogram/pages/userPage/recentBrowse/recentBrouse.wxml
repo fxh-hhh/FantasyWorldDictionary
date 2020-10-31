@@ -1,2 +1,6 @@
 <!--pages/userPage/recentBrowse/recentBrouse.wxml-->
-<text>pages/userPage/recentBrowse/recentBrouse.wxml</text>
+<view class="secondTitle">近期浏览的词条</view>
+<view wx:for="{{history}}" wx:key="_id">
+    <wnavigator clausedata="{{item.clausedata}}"></wnavigator>
+    <text>{{item.time}}</text>
+</view>

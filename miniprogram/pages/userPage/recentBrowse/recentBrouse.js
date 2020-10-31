@@ -1,3 +1,7 @@
+const { checklogin } = require("../../../utils/checklogin");
+const { getuserindb } = require("../../../utils/getuserindb");
+const { stamptostring } = require("../../../utils/stamptostring");
+
 // pages/userPage/recentBrowse/recentBrouse.js
 Page({
 
@@ -5,14 +9,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    history:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
+    if (await checklogin()) return;
+    getuserindb().then(async userdata => {
+      let arr = [];
+      let collect = wx.cloud.database().collection("records");
+      for (let key in userdata.history) {
+        let id = userdata.history[key].id;
+        let stamp = userdata.history[key].timestamp;
 
+        let one = await collect.doc(id).get();
+        arr.push({
+          clausedata: one.data,
+          time: stamptostring(stamp)
+        });
+      }
+      this.setData({
+        history: arr
+      })
+    })
   },
 
   /**

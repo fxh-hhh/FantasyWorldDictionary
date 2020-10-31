@@ -1,5 +1,5 @@
 <!--miniprogram/pages/mainPage/indexClause/indexClause.wxml-->
 <view class="mainTitle">{{type}}-索引页</view>
 <block wx:for="{{allclause}}" wx:key="_id">
-    <navigator url="../wordClause/wordClause?data={{item.jsondata}}">{{item.call}}</navigator>
+    <wnavigator clausedata="{{item}}"></wnavigator>
 </block>

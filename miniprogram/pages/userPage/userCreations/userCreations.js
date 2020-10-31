@@ -8,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userdata:{},
     worksinfo:[]
   },
 
@@ -25,10 +24,7 @@ Page({
       arr.push(one.data);
     }
     this.setData({
-      userdata,
       worksinfo: arr
-    }, () => {
-      console.log(this.data)
     })
   },
 
