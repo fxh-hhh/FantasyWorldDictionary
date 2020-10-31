@@ -2,7 +2,8 @@
 
 let {
   writechoice
-} = require("../../../json/writechoice")
+} = require("../../../json/writechoice");
+const { checklogin } = require("../../../utils/checklogin");
 
 Page({
 
@@ -20,11 +21,23 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad:async function (options) {
+    if (await checklogin()) return;
+    //id为词条类型的下标
     let id = parseInt(options.id);
     this.setData({
       id,
       fields: writechoice[id].fields,
+      allfields: writechoice[id].fields.map(v => {
+        let {
+          innerfield,
+          field
+        } = v;
+        return {
+          innerfield,
+          field
+        }
+      }),
       clausetype: writechoice[id].clausetype,
       innertype: writechoice[id].innertype
     })
@@ -80,16 +93,10 @@ Page({
   },
 
   input: function (event) {
-    let {
-      field,
-      innerfield
-    } = event.currentTarget.dataset.fieldinfo;
+    let index = event.currentTarget.dataset.index;
     let value = event.detail.value;
     let obj = this.data.allfields;
-    obj[innerfield] = {
-      value,
-      show: field
-    }
+    obj[index].value = value
     this.setData({
       allfields: obj
     })
@@ -97,18 +104,40 @@ Page({
 
   uploadclause: function (event) {
     let data = this.data.allfields;
-    console.log(data);
+    console.log("add clause: ",data);
     let collect = wx.cloud.database().collection("records");
+    let wxid = getApp().globalData.wxid;
     collect.add({
       data: {
+        authorid: wxid,
         innertype: this.data.innertype,
-        call: data.call.value,
+        call: data[0].value,
         fields: data
       }
     }).then(res => {
-      wx.showToast({
-        title: '上传成功',
-      })
+      let db = wx.cloud.database();
+      let cmd = db.command;
+      let collect = db.collection("userinfo");
+      try {
+        collect.where({
+          _openid: wxid
+        }).get().then((result) => {
+          let data = result.data;
+          if (data.length > 0) {
+            collect.doc(data[0]._id).update({
+              data: {
+                works: cmd.push(res._id)
+              }
+            })
+            wx.showToast({
+              title: '上传成功',
+            })
+          }
+        })
+      } catch (error) {
+        console.log(error)
+        collect.doc(res._id).remove();
+      }
     }).catch(res => {
       wx.showModal({
         cancelColor: 'cancelColor',

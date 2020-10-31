@@ -1,2 +1,6 @@
 <!--pages/userPage/userCreations/userCreations.wxml-->
-<text>pages/userPage/userCreations/userCreations.wxml</text>
+<block wx:for="{{worksinfo}}" wx:key="_id">
+    <view>
+        <navigator url="../../mainPage/wordClause/wordClause?id={{item._id}}">{{item.call}}</navigator>
+    </view>
+</block>

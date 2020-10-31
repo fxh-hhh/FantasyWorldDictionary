@@ -1,4 +1,4 @@
 <!--pages/mainPage/wordClause/wordClause.wxml-->
 <block wx:for="{{clausedata.fields}}" wx:key="key">
-    <text>{{item.show}}:{{item.value}}</text>
+    <text>{{item.field}}:{{item.value}}</text>
 </block>

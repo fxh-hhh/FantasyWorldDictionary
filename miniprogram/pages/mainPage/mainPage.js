@@ -1,6 +1,7 @@
 // pages/mainPage/mainPage.js
 
-let {writechoice} = require("../../json/writechoice")
+let {writechoice, getchoice} = require("../../json/writechoice");
+const { getuserindb } = require("../../utils/getuserindb");
 
 Page({
 
@@ -23,6 +24,49 @@ Page({
     });
     this.setData({
       alltype
+    });
+  },
+
+  changetype:function(){
+    let db = wx.cloud.database();
+    db.collection('records')
+      .get()
+      .then(res => {
+        res.data.forEach(v => {
+          let old = v.fields;
+          if(Array.isArray(old))return;
+          let range = getchoice(v.innertype).fields;
+          let fields = []
+          range.forEach(f=>{
+            fields.push({
+              innerfield:f.innerfield,
+              field:f.field,
+              value:old[f.innerfield].value
+            })
+          })
+          return
+          db.collection('records').doc(v._id).set({
+            data:{
+              fields
+            }
+          })
+        })
+      })
+  },
+  trim: function () {
+    let db = wx.cloud.database()
+    let collect = db.collection("records");
+    collect.get().then(async res => {
+      console.log(res);
+      for (let i in res.data) {
+        let id = res.data[i]._id;
+        let newdata = res.data[i];
+        newdata.authorid = newdata._openid;
+        delete newdata._id;
+        await collect.doc(id).set({
+          data: newdata
+        })
+      }
     })
   },
 

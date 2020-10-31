@@ -1,6 +1,11 @@
 // pages/writing/writingClassify/writingClassify.js
 
-let {writechoice} = require("../../../json/writechoice.js")
+const {
+  writechoice
+} = require("../../../json/writechoice.js")
+const {
+  checklogin
+} = require("../../../utils/checklogin.js")
 //import writechoice from "../../../json/writechoice.js" 
 
 Page({
@@ -15,8 +20,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad:async function (options) {
+    if (await checklogin()) return;
   },
 
   /**

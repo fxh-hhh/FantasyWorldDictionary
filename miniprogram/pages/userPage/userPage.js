@@ -90,7 +90,8 @@ Page({
       wxid: id,
       ...await this.getdatainapp(id, res.userInfo)
     }
-    getApp().globalData.userdata = udata;
+    getApp().globalData.wxid = id;
+    getApp().globalData.onlogin = true;
     this.setData({
       userdata: udata,
       onlogin: true
@@ -101,7 +102,7 @@ Page({
     let db = wx.cloud.database();
     let collect = db.collection("userinfo");
     let res = await collect.get({
-      openid: id
+      wxid: id
     });
 
     let data = {}
@@ -132,6 +133,8 @@ Page({
         data[def[index][0]] = def[index][1];
       }
     }
+
+    data.wxid = id;
 
     //更新数据库的缓存
     collect.doc(dataid).update({

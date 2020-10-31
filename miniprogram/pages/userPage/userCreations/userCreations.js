@@ -1,3 +1,6 @@
+const { checklogin } = require("../../../utils/checklogin");
+const { getuserindb } = require("../../../utils/getuserindb");
+
 // pages/userPage/userCreations/userCreations.js
 Page({
 
@@ -5,14 +8,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userdata:{},
+    worksinfo:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    if (await checklogin()) return;
+    let userdata = await getuserindb(getApp().globalData.wxid)
+    let arr = [];
+    for (let key in userdata.works) {
+      let id = userdata.works[key];
+      let one =await wx.cloud.database().collection("records").doc(id).get();
+      arr.push(one.data);
+    }
+    this.setData({
+      userdata,
+      worksinfo: arr
+    }, () => {
+      console.log(this.data)
+    })
   },
 
   /**
