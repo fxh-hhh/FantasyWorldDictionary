@@ -80,23 +80,29 @@ Page({
   },
 
   input: function (event) {
-    let field = event.currentTarget.dataset.field;
+    let {
+      field,
+      innerfield
+    } = event.currentTarget.dataset.fieldinfo;
     let value = event.detail.value;
     let obj = this.data.allfields;
-    obj[field] = value;
+    obj[innerfield] = {
+      value,
+      show: field
+    }
     this.setData({
       allfields: obj
     })
   },
 
-  showTopTips: function (event) {
+  uploadclause: function (event) {
     let data = this.data.allfields;
     console.log(data);
     let collect = wx.cloud.database().collection("records");
     collect.add({
       data: {
         innertype: this.data.innertype,
-        call: data.call,
+        call: data.call.value,
         fields: data
       }
     }).then(res => {

@@ -80,7 +80,7 @@ Page({
   },
 
   inputTyping: function (event) {
-    let key = event.detail.value.replace(" ","");
+    let key = event.detail.value.replace(" ", "");
     this.setData({
       inputVal: key
     }, res => {
@@ -119,7 +119,9 @@ Page({
     })
   },
 
-  test: function(event){
-    console.log(event);
+  gotoclause: function (event) {
+    wx.navigateTo({
+      url: '../mainPage/wordClause/wordClause?id=' + event.currentTarget.dataset.id,
+    })
   }
 })

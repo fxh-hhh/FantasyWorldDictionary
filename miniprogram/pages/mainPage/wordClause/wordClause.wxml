@@ -1,2 +1,4 @@
 <!--pages/mainPage/wordClause/wordClause.wxml-->
-<text>名称:{{clausedata.call}}</text>
+<block wx:for="{{clausedata.fields}}" wx:key="key">
+    <text>{{item.show}}:{{item.value}}</text>
+</block>

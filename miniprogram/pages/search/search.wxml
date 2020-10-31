@@ -19,7 +19,7 @@
 			<block wx:for="{{searchres}}" wx:key="id">
 				<view class="weui-cell weui-cell_active weui-cell_access">
 					<view class="weui-cell__bd weui-cell_primary">
-						<view>{{item.call}}</view>
+						<view bindtap="gotoclause" data-id="{{item.id}}">{{item.call}}</view>
 					</view>
 				</view>
 			</block>
