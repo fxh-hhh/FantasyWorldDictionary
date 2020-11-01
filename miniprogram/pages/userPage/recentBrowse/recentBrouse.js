@@ -1,4 +1,5 @@
 const { checklogin } = require("../../../utils/checklogin");
+const { getclausebyid } = require("../../../utils/getclausebyid");
 const { getuserindb } = require("../../../utils/getuserindb");
 const { stamptostring } = require("../../../utils/stamptostring");
 
@@ -20,13 +21,17 @@ Page({
     getuserindb().then(async userdata => {
       let arr = [];
       let collect = wx.cloud.database().collection("records");
+      this.setData({
+        history: userdata.history.map(v => {
+          return {}
+        })
+      })
       for (let key in userdata.history) {
         let id = userdata.history[key].id;
         let stamp = userdata.history[key].timestamp;
-
-        let one = await collect.doc(id).get();
+        let one = await getclausebyid(id, collect);
         arr.push({
-          clausedata: one.data,
+          clausedata: one,
           time: stamptostring(stamp)
         });
       }

@@ -5,15 +5,15 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_active">
         <view class="weui-cell__bd">
-          <input wx:if="{{item.type == 'input'}}" class="weui-input" placeholder="{{item.default}}"
-            data-index="{{index}}" bindinput="input" />
-          <mline wx:if="{{item.type == 'textarea'}}" placeholder="{{item.default}}" data-index="{{index}}"
-            bindinput="input" maxlength="200"></mline>
+          <input wx:if="{{item.type == 'input'}}" class="weui-input" value="{{allfields[index].value}}"
+            placeholder="{{item.default}}" data-index="{{index}}" bindinput="input" />
+          <mline wx:if="{{item.type == 'textarea'}}" value="{{allfields[index].value}}" placeholder="{{item.default}}"
+            data-index="{{index}}" bindinput="input" maxlength="200"></mline>
         </view>
       </view>
     </view>
   </block>
 </view>
 <view class="weui-btn-area">
-  <button class="weui-btn" type="primary" bindtap="uploadclause">确定上传</button>
+  <button class="weui-btn" type="primary" bindtap="{{isedit ? 'finishedit' : 'uploadclause'}}">{{isedit ? "完成编辑" : "确定上传"}}</button>
 </view>

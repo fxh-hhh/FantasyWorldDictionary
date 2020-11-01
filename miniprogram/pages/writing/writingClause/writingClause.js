@@ -1,9 +1,12 @@
 // pages/writing/writingClouse/writingClouse.js
 
 let {
-  writechoice
+  writechoice,
+  getchoice
 } = require("../../../json/writechoice");
-const { checklogin } = require("../../../utils/checklogin");
+const {
+  checklogin
+} = require("../../../utils/checklogin");
 
 Page({
 
@@ -13,83 +16,57 @@ Page({
   data: {
     innertype: "",
     clausetype: "",
-    allfields: {
+    allfields: [
       //输入的所有字段
-    }
+    ],
+    isedit: false,
+    /**
+     * @type {DB.DocumentReference}
+     */
+    wordref: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad:async function (options) {
+  onLoad: async function (options) {
     if (await checklogin()) return;
     //id为词条类型的下标
-    let id = parseInt(options.id);
+    let id = -1;
+    if ("id" in options)
+      id = parseInt(options.id);
+    else if ("innertype" in options)
+      id = getchoice(options.innertype).index;
+    else
+      throw "没有该词条类型";
+
+    let wordinfo = {}
+    if ("wordid" in options) {
+      //编辑页面
+      let wordref = wx.cloud.database().collection("records").doc(options["wordid"]);
+      this.setData({
+        isedit: true,
+        wordref
+      })
+      wordinfo = (await wordref.get()).data;
+    }
     this.setData({
       id,
       fields: writechoice[id].fields,
-      allfields: writechoice[id].fields.map(v => {
+      allfields: writechoice[id].fields.map((v, i) => {
         let {
           innerfield,
           field
         } = v;
         return {
           innerfield,
-          field
+          field,
+          value: wordinfo.fields ? wordinfo.fields[i].value : ""
         }
       }),
       clausetype: writechoice[id].clausetype,
       innertype: writechoice[id].innertype
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
 
   input: function (event) {
@@ -102,9 +79,30 @@ Page({
     })
   },
 
-  uploadclause: function (event) {
+  finishedit: function () {
     let data = this.data.allfields;
-    console.log("add clause: ",data);
+    console.log("edit clause: ", data);
+    this.data.wordref.update({
+      data: {
+        call: data[0].value,
+        fields: wx.cloud.database().command.set(data)
+      }
+    }).then(res => {
+      wx.showToast({
+        title: '更新成功',
+      })
+    }).catch(res => {
+      wx.showModal({
+        cancelColor: 'cancelColor',
+        title: "错误",
+        content: JSON.stringify(res)
+      })
+    })
+  },
+
+  uploadclause: function () {
+    let data = this.data.allfields;
+    console.log("add clause: ", data);
     let collect = wx.cloud.database().collection("records");
     let wxid = getApp().globalData.wxid;
     collect.add({

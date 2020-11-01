@@ -8,12 +8,16 @@ Component({
             type: Number,
             value: 1000
         },
-        style: {
-            type: String,
-            value: "height: 20em"
+        height: {
+            type: Number,
+            value: 20
         },
-        placeholder:{
-            type : String,
+        placeholder: {
+            type: String,
+            value: ""
+        },
+        value: {
+            type: String,
             value: ""
         }
     },
@@ -37,6 +41,14 @@ Component({
                 this.triggerEvent("input", {
                     value: str
                 });
+            })
+        }
+    },
+
+    lifetimes: {
+        attached: function () {
+            this.setData({
+                str: this.properties.value
             })
         }
     }

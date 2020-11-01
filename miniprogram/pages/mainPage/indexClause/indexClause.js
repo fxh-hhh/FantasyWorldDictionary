@@ -26,7 +26,6 @@ Page({
                 type: getchoice(type).clausetype,
                 allclause: res.data
             })
-            console.log(res.data);
         })
     },
 

@@ -1,6 +1,7 @@
 <!--pages/userPage/recentBrowse/recentBrouse.wxml-->
 <view class="secondTitle">近期浏览的词条</view>
+<button bindtap="cleanall">清空所有</button>
 <view wx:for="{{history}}" wx:key="_id">
     <wnavigator clausedata="{{item.clausedata}}"></wnavigator>
-    <text>{{item.time}}</text>
+    <text>{{item.time || "xxxx-xx-xx xx:xx:xx"}}</text>
 </view>

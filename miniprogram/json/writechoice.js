@@ -73,6 +73,9 @@ export function getchoice(innertype) {
     if (index == -1) {
         throw "没有该词条类型"
     } else {
-        return writechoice[index]
+        return {
+            ...writechoice[index],
+            index: index
+        }
     }
 }

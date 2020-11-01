@@ -21,6 +21,7 @@ Page({
         userref: {},
         hassave: false,
         ondeal: false,
+        iderr: false
     },
 
     /**

@@ -1,8 +1,12 @@
+/**
+ * 
+ * @param {String | Number} wxid 
+ */
 export async function getuserindb(wxid = getApp().globalData.wxid) {
     let global = getApp().globalData
     if (wxid == global.wxid && global.userref) {
         return {
-            ...await global.userref.get(),
+            ...(await global.userref.get()).data,
             ref: global.userref
         }
     }

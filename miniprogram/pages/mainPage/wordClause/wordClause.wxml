@@ -1,7 +1,14 @@
 <!--pages/mainPage/wordClause/wordClause.wxml-->
-<view class="mainTitle">{{clausedata.call}}</view>
-<button type="primary" bindtap="save">{{hassave ? "取消收藏" : "收藏"}}</button>
-<block wx:for="{{clausedata.fields}}" wx:key="key">
-    <view class="wordSecondTitle">{{item.field}}</view>
-    <view class="content">{{item.value}}</view>
+<block wx:if="{{iderr}}">
+    <text>您访问的页面不存在</text>
+</block>
+<block wx:else>
+    <view class="mainTitle">
+        <text>{{clausedata.call}}</text>
+    </view>
+    <button type="primary" bindtap="save">{{hassave ? "取消收藏" : "收藏"}}</button>
+    <block wx:for="{{clausedata.fields}}" wx:key="key">
+        <view class="wordSecondTitle">{{item.field}}</view>
+        <view class="content">{{item.value}}</view>
+    </block>
 </block>

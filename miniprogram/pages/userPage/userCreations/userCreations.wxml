@@ -2,4 +2,7 @@
 <view class="secondTitle">我创作的词条</view>
 <view wx:for="{{worksinfo}}" wx:key="_id">
     <wnavigator clausedata="{{item}}"></wnavigator>
+    <navigator url="../../writing/writingClause/writingClause?innertype={{item.innertype}}&&wordid={{item._id}}">编辑
+    </navigator>
+    <button type="warn" bindtap="deleteword" data-id="{{item._id}}">删除</button>
 </view>
