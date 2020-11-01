@@ -1,13 +1,26 @@
-const { getuserindb } = require("../../../utils/getuserindb");
+const {
+    checklogin
+} = require("../../../utils/checklogin");
+const {
+    getuserindb
+} = require("../../../utils/getuserindb");
 
 // pages/mainPage/wordClause/wordClause.js
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
-        clausedata: {}
+        /**
+         * @type {DB.IDocumentData}
+         */
+        clausedata: {},
+        /**
+         * @type {DB.DocumentReference}
+         */
+        userref: {},
+        hassave: false,
+        ondeal: false,
     },
 
     /**
@@ -32,6 +45,10 @@ Page({
                 } = getApp();
                 if (globalData.onlogin) {
                     getuserindb(globalData.wxid).then(res => {
+                        this.setData({
+                            hassave: res.saves.includes(id),
+                            userref: res.ref
+                        })
                         res.ref.update({
                             data: {
                                 history: wx.cloud.database().command.unshift({
@@ -54,52 +71,33 @@ Page({
         }
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    save: async function () {
+        if (await checklogin()) return;
+        if (this.data.ondeal) return;
+        this.data.ondeal = true;
+        //收藏/取消收藏
+        try {
+            let id = this.data.clausedata._id;
+            let db = wx.cloud.database();
+            let res = await this.data.userref.get();
+            let saves = res.data.saves;
+            console.log(saves)
+            if (this.data.hassave) {
+                saves.splice(saves.indexOf(id), 1);
+            } else {
+                saves.push(id);
+            }
+            this.setData({
+                hassave: !this.data.hassave
+            })
+            await this.data.userref.update({
+                data: {
+                    saves: db.command.set(saves)
+                }
+            })
+        } catch (error) {
+            console.error(error);
+        }
+        this.data.ondeal = false;
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

@@ -16,11 +16,12 @@ Page({
    */
   onLoad: async function (options) {
     if (await checklogin()) return;
-    let userdata = await getuserindb(getApp().globalData.wxid)
+    let userdata = await getuserindb()
+    let collect = wx.cloud.database().collection("records")
     let arr = [];
     for (let key in userdata.works) {
       let id = userdata.works[key];
-      let one =await wx.cloud.database().collection("records").doc(id).get();
+      let one = await collect.doc(id).get();
       arr.push(one.data);
     }
     this.setData({
