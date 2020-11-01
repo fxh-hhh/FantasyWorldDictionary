@@ -1,3 +1,7 @@
+const {
+  getuserindb
+} = require("../../utils/getuserindb");
+
 // pages/userPage/userPage.js
 Page({
 
@@ -100,25 +104,7 @@ Page({
 
   getdatainapp: async function (id, fromwx) {
     let db = wx.cloud.database();
-    let collect = db.collection("userinfo");
-    let res = await collect.get({
-      wxid: id
-    });
-
-    let data = {}
-    let dataid = 0;
-
-    if (res.data.length > 0) {
-      //存在,则使用数据库的缓存
-      data = res.data[0];
-      dataid = data._id;
-      return data;
-    } else {
-      //不存在,则新建
-      dataid = (await collect.add({
-        data: {},
-      }))._id
-    }
+    let res = await getuserindb(id);
 
     //默认值
     let def = [
@@ -129,18 +115,16 @@ Page({
       ["history", []],
     ]
     for (let index in def) {
-      if (!(def[index][0] in data)) {
-        data[def[index][0]] = def[index][1];
+      if (!(def[index][0] in res)) {
+        res[def[index][0]] = def[index][1];
       }
     }
 
-    data.wxid = id;
-
     //更新数据库的缓存
-    collect.doc(dataid).update({
-      data
+    res.ref.update({
+      data: res
     })
 
-    return data;
+    return res;
   }
 });

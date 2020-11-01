@@ -1,4 +1,11 @@
 export async function getuserindb(wxid = getApp().globalData.wxid) {
+    let global = getApp().globalData
+    if (wxid == global.wxid && global.userref) {
+        return {
+            ...await global.userref.get(),
+            ref: global.userref
+        }
+    }
     let db = wx.cloud.database();
     let collect = db.collection("userinfo");
     let res = await collect.where({
@@ -6,11 +13,23 @@ export async function getuserindb(wxid = getApp().globalData.wxid) {
     }).get();
     if (res.data.length > 0) {
         let info = res.data[0];
+        if (wxid == global.wxid) {
+            global.userref = collect.doc(info._id);
+        }
         return {
             ...info,
             ref: collect.doc(info._id)
         }
     } else {
-        throw "用户信息获取出错"
+        let ndata = {
+            wxid: id
+        }
+        let res = await collect.add({
+            data: ndata,
+        });
+        return {
+            ...ndata,
+            ref: collect.doc(res._id)
+        }
     }
 }
