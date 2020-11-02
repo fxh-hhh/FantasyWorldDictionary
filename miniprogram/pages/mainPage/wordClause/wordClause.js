@@ -82,7 +82,6 @@ Page({
             let db = wx.cloud.database();
             let res = await this.data.userref.get();
             let saves = res.data.saves;
-            console.log(saves)
             if (this.data.hassave) {
                 saves.splice(saves.indexOf(id), 1);
             } else {

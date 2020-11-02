@@ -1,0 +1,2 @@
+<!--components/loadingbar/loadingbar.wxml-->
+{{show}}{{tail}}
