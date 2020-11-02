@@ -11,4 +11,8 @@
         <view class="wordSecondTitle">{{item.field}}</view>
         <view class="content">{{item.value}}</view>
     </block>
+    <view class="wordSecondTitle">相关词条</view>
+    <block wx:for="{{clausedata.relatives}}" wx:key="*this">
+        <wnavigator wordid="{{item}}"></wnavigator>
+    </block>
 </block>

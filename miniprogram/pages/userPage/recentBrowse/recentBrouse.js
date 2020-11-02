@@ -1,7 +1,15 @@
-const { checklogin } = require("../../../utils/checklogin");
-const { getclausebyid } = require("../../../utils/getclausebyid");
-const { getuserindb } = require("../../../utils/getuserindb");
-const { stamptostring } = require("../../../utils/stamptostring");
+const {
+  checklogin
+} = require("../../../utils/checklogin");
+const {
+  getclausebyid
+} = require("../../../utils/getclausebyid");
+const {
+  getuserindb, getuserref
+} = require("../../../utils/getuserindb");
+const {
+  stamptostring
+} = require("../../../utils/stamptostring");
 
 // pages/userPage/recentBrowse/recentBrouse.js
 Page({
@@ -10,7 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    history:[]
+    history: []
   },
 
   /**
@@ -18,7 +26,7 @@ Page({
    */
   onLoad: async function (options) {
     if (await checklogin()) return;
-    getuserindb().then(async userdata => {
+    getuserindb().then(userdata => {
       this.setData({
         history: userdata.history.map(v => {
           return {
@@ -29,4 +37,17 @@ Page({
       })
     })
   },
+
+  cleanall: function () {
+    this.setData({
+      history: []
+    })
+    getuserref().then(ref => {
+      ref.update({
+        data:{
+          history:wx.cloud.database().command.set([])
+        }
+      })
+    })
+  }
 })

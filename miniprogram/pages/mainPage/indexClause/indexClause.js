@@ -17,13 +17,15 @@ Page({
      */
     onLoad: function (options) {
         let type = options.type;
+        this.setData({
+            type: getchoice(type).clausetype,
+        })
         let db = wx.cloud.database();
         let collect = db.collection("records");
         collect.limit(20).where({
             innertype: type
         }).get().then(res => {
             this.setData({
-                type: getchoice(type).clausetype,
                 allclause: res.data
             })
         })

@@ -7,6 +7,9 @@ let {
 const {
   checklogin
 } = require("../../../utils/checklogin");
+const {
+  getuserindb
+} = require("../../../utils/getuserindb");
 
 Page({
 
@@ -20,8 +23,9 @@ Page({
       //输入的所有字段
     ],
     //关联词条
-    relatives:[],
+    relatives: [],
     isedit: false,
+    isopen: false,
     /**
      * @type {DB.DocumentReference}
      */
@@ -72,6 +76,31 @@ Page({
     })
   },
 
+  delrelative: function (event) {
+    let todel = event.currentTarget.dataset.todel;
+    let relatives = this.data.relatives;
+    relatives.splice(todel, 1);
+    this.setData({
+      relatives
+    })
+  },
+
+  opensearchbar: function () {
+    this.setData({
+      isopen: true
+    })
+  },
+
+  addrelative: function (event) {
+    let toadd = event.detail.id;
+    let relatives = this.data.relatives;
+    relatives.push(toadd)
+    this.setData({
+      relatives,
+      isopen: false
+    })
+  },
+
   input: function (event) {
     let index = event.currentTarget.dataset.index;
     let value = event.detail.value;
@@ -88,7 +117,8 @@ Page({
     this.data.wordref.update({
       data: {
         call: data[0].value,
-        fields: wx.cloud.database().command.set(data)
+        fields: wx.cloud.database().command.set(data),
+        relatives: wx.cloud.database().command.set(this.data.relatives)
       }
     }).then(res => {
       wx.showToast({
@@ -104,41 +134,35 @@ Page({
   },
 
   uploadclause: function () {
-    let data = this.data.allfields;
-    let relatives = this.data.relatives;
-    console.log("add clause: ", data);
+    let fields = this.data.allfields;
     let collect = wx.cloud.database().collection("records");
     let wxid = getApp().globalData.wxid;
+    let data = {
+      authorid: wxid,
+      innertype: this.data.innertype,
+      call: fields[0].value,
+      fields,
+      relatives: this.data.relatives
+    }
+    console.log("add clause: ", data);
     collect.add({
-      data: {
-        authorid: wxid,
-        innertype: this.data.innertype,
-        call: data[0].value,
-        fields: data,
-        relatives
-      }
+      data
     }).then(res => {
       let db = wx.cloud.database();
       let cmd = db.command;
-      let collect = db.collection("userinfo");
       try {
-        collect.where({
-          _openid: wxid
-        }).get().then((result) => {
-          let data = result.data;
-          if (data.length > 0) {
-            collect.doc(data[0]._id).update({
-              data: {
-                works: cmd.push(res._id)
-              }
-            })
-            wx.showToast({
-              title: '上传成功',
-            })
-          }
+        getuserindb().then((result) => {
+          result.ref.update({
+            data: {
+              works: cmd.push(res._id)
+            }
+          })
+          wx.showToast({
+            title: '上传成功',
+          })
         })
       } catch (error) {
-        console.log(error)
+        console.error(error)
         collect.doc(res._id).remove();
       }
     }).catch(res => {

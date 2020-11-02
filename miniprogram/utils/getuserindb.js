@@ -37,3 +37,13 @@ export async function getuserindb(wxid = getApp().globalData.wxid) {
         }
     }
 }
+
+/**
+ * @returns {Promise<DB.DocumentReference>}
+ */
+export async function getuserref(wxid) {
+    let {
+        ref
+    } = await (wxid ? getuserindb(wxid) : getuserindb());
+    return ref;
+}

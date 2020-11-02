@@ -19,14 +19,15 @@
   <view>
     <!-- 已经关联的词条,提供删除按钮 -->
     <block wx:for="{{relatives}}" wx:key="*this">
-      <wnavigator id="{{item}}"></wnavigator>
-      <button type="warn" data-set="{{index}}" bindtap="delrelative">删除</button>
+      <wnavigator wordid="{{item}}"></wnavigator>
+      <button type="warn" data-todel="{{index}}" bindtap="delrelative">删除</button>
     </block>
   </view>
   <view>
     <!-- 提供增加按钮,增加未关联的词条 -->
-    <button type="primary" bindtap="addrelative">添加新词条</button>
+    <button type="primary" bindtap="opensearchbar" wx:if="{{!isopen}}">添加新词条</button>
     <!-- 搜索框 -->
+    <searchbar bindselect="addrelative" wx:if="{{isopen}}"></searchbar>
   </view>
 </view>
 <view class="weui-btn-area">

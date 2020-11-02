@@ -1,5 +1,15 @@
 <!--pages/userPage/userCollections/userCollections.wxml-->
 <view class="secondTitle">我收藏的词条</view>
-<view wx:for="{{savesinfo}}" wx:key="_id">
-    <wnavigator wordid="{{item}}"></wnavigator>
-</view>
+<block wx:if="{{savesinfo.length}}">
+    <view wx:for="{{savesinfo}}" wx:key="_id">
+        <wnavigator wordid="{{item}}"></wnavigator>
+    </view>
+</block>
+<block wx:else>
+    <view>
+        <text>
+            暂无收藏记录
+        </text>
+        <navigator url="../../mainPage/mainPage" open-type="switchTab">点击前往浏览词条</navigator>
+    </view>
+</block>
