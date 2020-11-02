@@ -1,5 +1,5 @@
 <!--pages/userPage/userCollections/userCollections.wxml-->
 <view class="secondTitle">我收藏的词条</view>
 <view wx:for="{{savesinfo}}" wx:key="_id">
-    <wnavigator clausedata="{{item}}"></wnavigator>
+    <wnavigator wordid="{{item}}"></wnavigator>
 </view>

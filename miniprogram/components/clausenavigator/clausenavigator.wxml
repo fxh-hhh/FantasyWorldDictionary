@@ -1,3 +1,14 @@
 <!--components/clausenavigator/clausenavigator.wxml-->
-<navigator class="wordNavigator" url="/pages/mainPage/wordClause/wordClause?id={{clausedata._id}}">{{clausedata.call || "----"}}
+<navigator class="wordNavigator" url="/pages/mainPage/wordClause/wordClause?id={{id || fact._id}}">
+    <block wx:if="{{fact}}">
+        <block wx:if="{{fact.nofind}}">
+            <text style="color:#ff0000">词条可能已经被删除</text>
+        </block>
+        <block wx:else>
+            <text style="color:#0000ff">{{fact.call}}</text>
+        </block>
+    </block>
+    <block wx:else>
+        <text>加载中{{tail}}</text>
+    </block>
 </navigator>

@@ -1,4 +1,5 @@
 <!--pages/mainPage/mainPage.wxml-->
+<image class="background" src="../../images/indexback.jpeg"></image>
 <view class="mainTitle">欢迎来到幻世辞~</view>
 <view class="secondTitle">幻想世界辞典</view>
 <view class="secondTitle">Fantasy World Dictionary</view>

@@ -5,6 +5,8 @@ export async function getclausebyid(id, collect = wx.cloud.database().collection
         } = await collect.doc(id).get();
         return data;
     } catch (error) {
-        return {}
+        return {
+            nofind: true
+        }
     }
 }

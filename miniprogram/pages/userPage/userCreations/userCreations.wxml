@@ -1,8 +1,16 @@
 <!--pages/userPage/userCreations/userCreations.wxml-->
 <view class="secondTitle">我创作的词条</view>
 <view wx:for="{{worksinfo}}" wx:key="_id">
-    <wnavigator clausedata="{{item}}"></wnavigator>
-    <navigator url="../../writing/writingClause/writingClause?innertype={{item.innertype}}&&wordid={{item._id}}">编辑
-    </navigator>
+    <view class="weui-cells weui-cells_after-title">
+        <navigator url="../../writing/writingClause/writingClause?innertype={{item.innertype}}&&wordid={{item._id}}"
+            class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+                <image src="icons/editicon.png"
+                    style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+            </view>
+            <view class="weui-cell__bd">{{item.call}}</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">编辑词条</view>
+        </navigator>
+    </view>
     <button type="warn" bindtap="deleteword" data-id="{{item._id}}">删除</button>
 </view>

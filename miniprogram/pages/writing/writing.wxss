@@ -18,7 +18,7 @@
 }
 .content
 {
-  font-size:15px;
+  font-size:17px;
   font-weight: 600;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
   text-align: left;
@@ -27,6 +27,7 @@
 }
 .annotation
 {
+  font-size: 15px;
   font-family:Times, "Times New Roman", Georgia, serif;
   font-weight: 500;
   color: rgb(75, 74, 74);

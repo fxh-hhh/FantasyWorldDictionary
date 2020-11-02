@@ -1,5 +1,5 @@
 <!--pages/userPage/userPage.wxml-->
-<view class="background">
+<view class="checkinbackground">
   <view class="userHead">
     <image src="{{userdata && userdata.headimage ? userdata.headimage : '../../images/user-unlogin.png'}}"></image>
   </view>
