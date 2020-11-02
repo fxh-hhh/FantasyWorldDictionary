@@ -1,4 +1,5 @@
 <!--pages/userPage/recentBrowse/recentBrouse.wxml-->
+<image class="background" src="../../../images/searchback.jpeg"></image>
 <view class="secondTitle">近期浏览的词条</view>
 <button type="warn" bindtap="cleanall">清空所有</button>
 <block wx:if="{{history.length}}">
@@ -9,9 +10,9 @@
 </block>
 <block wx:else>
     <view>
-        <text>
+        <text class="content">
             暂无浏览记录
         </text>
-        <navigator url="../../mainPage/mainPage" open-type="switchTab">点击前往浏览词条</navigator>
+        <navigator class="thirdTitle" url="../../mainPage/mainPage" open-type="switchTab">点击前往浏览词条</navigator>
     </view>
 </block>

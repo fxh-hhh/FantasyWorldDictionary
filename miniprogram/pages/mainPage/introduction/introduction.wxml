@@ -1,4 +1,5 @@
 <!--pages/mainPage/introduction/introduction.wxml-->
+<view class="writingbackground"></view>
 <view class="title">简介：</view>
 <view id="introduction" class="content">
   《幻世辞》是一部以幻想为基础，能够让所有用户都参与创作的辞典小说。</view>

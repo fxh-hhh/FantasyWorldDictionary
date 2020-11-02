@@ -22,7 +22,7 @@ Page({
         listUrl: "./recentBrowse/recentBrouse",
       },
       {
-        title: "联系我们",
+        title: "联系开发者",
         listUrl: "./contactDeveloper/contactDeveloper",
       }
     ]
@@ -81,6 +81,8 @@ Page({
         res[def[index][0]] = def[index][1];
       }
     }
+
+    delete res["_openid"]
 
     //更新数据库的缓存
     res.ref.update({

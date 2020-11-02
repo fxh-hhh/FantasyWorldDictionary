@@ -1,4 +1,5 @@
 <!--pages/userPage/userCollections/userCollections.wxml-->
+<image class="background" src="../../../images/searchback.jpeg"></image>
 <view class="secondTitle">我收藏的词条</view>
 <block wx:if="{{savesinfo.length}}">
     <view wx:for="{{savesinfo}}" wx:key="_id">
@@ -7,9 +8,9 @@
 </block>
 <block wx:else>
     <view>
-        <text>
+        <text class="content">
             暂无收藏记录
         </text>
-        <navigator url="../../mainPage/mainPage" open-type="switchTab">点击前往浏览词条</navigator>
+        <navigator class="thirdTitle" url="../../mainPage/mainPage" open-type="switchTab">点击前往浏览词条</navigator>
     </view>
 </block>

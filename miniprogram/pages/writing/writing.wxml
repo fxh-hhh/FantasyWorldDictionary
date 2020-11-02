@@ -1,4 +1,5 @@
 <!--pages/writing/writing.wxml-->
+<view class="writingbackground"></view>
 <view class="mainTitle">词条创作指南
   <view id="firstBlock">
     <view class="secondTitle">一些基础设定：
@@ -29,7 +30,7 @@
         <view class="annotation">将会以时间作为排序与检索方式</view>
       </view>
       <view class="content">5、禁止进行或传播一切违法或恶意行为！
-        <view class="annotation">正义的管理员会仔细审查每个词条，严重者将被记入黑名单</view>
+        <view class="annotation">正义的管理员会仔细审查每个词条，严重者将被记入黑名单，任何违法行为都将被记录id并提交公安机关</view>
       </view>
     </view>
     <view class="secondTitle">一些创作建议:
@@ -54,9 +55,10 @@
       <view class="content">6、但是也不要引用太多
         <view class="annotation">我想没什么人愿意读一篇全是术语的文章吧？</view>
       </view>
+      <view class="content">7、注明你引用了哪些词条
+        <view class="annotation">在创作或编辑页面下方点击“添加相关词条”进行操作</view>
+      </view>
     </view>
   </view>
 </view>
-<view class="index-link">
-  <navigator url="./writingClassify/writingClassify" class="item-link">我明白了！开始创作>></navigator>
-</view>
+<navigator url="./writingClassify/writingClassify" class="item-link">我明白了！开始创作>></navigator>

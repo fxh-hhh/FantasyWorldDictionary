@@ -1,3 +1,4 @@
 <!--pages/search/search.wxml-->
 <image class="background" src="../../images/searchback.jpeg"></image>
+<view class="secondTitle">搜索词条</view>
 <searchbar bindselect="gotoclause"></searchbar>

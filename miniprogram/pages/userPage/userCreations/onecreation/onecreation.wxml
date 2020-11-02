@@ -12,7 +12,12 @@
                 <load></load>
             </block>
             <block wx:else>
-                {{clausedata.call}}
+                <block wx:if="{{clausedata.nofind}}">
+                    <text style="color:#ff0000">词条可能已经被删除</text>
+                </block>
+                <block wx:else>
+                    <text style="color:#0000ff">{{clausedata.call}}</text>
+                </block>
             </block>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access">编辑词条</view>

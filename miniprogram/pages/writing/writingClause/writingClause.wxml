@@ -25,7 +25,7 @@
   </view>
   <view>
     <!-- 提供增加按钮,增加未关联的词条 -->
-    <button type="primary" bindtap="opensearchbar" wx:if="{{!isopen}}">添加新词条</button>
+    <button type="primary" bindtap="opensearchbar" wx:if="{{!isopen}}">添加相关词条</button>
     <!-- 搜索框 -->
     <searchbar bindselect="addrelative" wx:if="{{isopen}}"></searchbar>
   </view>

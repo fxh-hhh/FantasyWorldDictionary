@@ -1,5 +1,5 @@
 /**app.wxss**/
-@import 'style/weui.wxss';
+@import './style/weui.wxss';
 .container {
   display: flex;
   flex-direction: column;
@@ -163,7 +163,8 @@ page {
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
   text-align: center;
   line-height: 1.6;
-  color: rgb(28, 40, 107)
+  color: rgb(28, 40, 107);
+  margin-top: 20px;
 }
 
 .secondTitle
@@ -195,5 +196,30 @@ page {
   position: fixed;
   background-size: 100% 100%;
   z-index:-1;
+  filter: opacity(30%);
+}
+
+.writingbackground
+{
+  width:100%;
+  height:100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index:-1;
   filter: opacity(50%);
+  background-image: linear-gradient(rgb(252, 207, 252),rgb(182, 181, 253));
+}
+
+.thirdTitle
+{
+  font-size:20px;
+  font-weight: 600;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  line-height: 1.6;
+  color: rgb(2, 2, 2);
+  margin: 10px;
+  padding:10px 15px;
+  background-color: #4ea6ec;
+  color: #fff;
+  border-radius: 4px
 }

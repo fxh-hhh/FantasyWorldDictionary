@@ -1,11 +1,8 @@
 <!--pages/mainPage/mainPage.wxml-->
-<image class="background" src="../../images/indexback.jpeg"></image>
-<view class="mainTitle">欢迎来到幻世辞~</view>
-<view class="secondTitle">幻想世界辞典</view>
+<image class="background" src="../../images/searchback.jpeg"></image>
+<view class="mainTitle">幻想世界辞典</view>
 <view class="secondTitle">Fantasy World Dictionary</view>
 <navigator class="introduction" url="./introduction/introduction">点这里看小程序简介>></navigator>
-<navigator class="todayWord" url="./todayWordIndex/todayWordIndex">今日热词>>
-</navigator>
 <block wx:for="{{alltype}}" wx:key="innertype">
     <navigator class="thirdTitle" url="./indexClause/indexClause?type={{item.innertype}}">{{item.clausetype}}>>
     </navigator>
