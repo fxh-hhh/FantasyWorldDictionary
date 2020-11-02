@@ -19,6 +19,8 @@ Page({
     allfields: [
       //输入的所有字段
     ],
+    //关联词条
+    relatives:[],
     isedit: false,
     /**
      * @type {DB.DocumentReference}
@@ -65,7 +67,8 @@ Page({
         }
       }),
       clausetype: writechoice[id].clausetype,
-      innertype: writechoice[id].innertype
+      innertype: writechoice[id].innertype,
+      relatives: wordinfo.relatives || []
     })
   },
 
@@ -102,6 +105,7 @@ Page({
 
   uploadclause: function () {
     let data = this.data.allfields;
+    let relatives = this.data.relatives;
     console.log("add clause: ", data);
     let collect = wx.cloud.database().collection("records");
     let wxid = getApp().globalData.wxid;
@@ -110,7 +114,8 @@ Page({
         authorid: wxid,
         innertype: this.data.innertype,
         call: data[0].value,
-        fields: data
+        fields: data,
+        relatives
       }
     }).then(res => {
       let db = wx.cloud.database();
