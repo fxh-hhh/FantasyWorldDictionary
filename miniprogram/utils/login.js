@@ -27,8 +27,10 @@ export async function login(userinfo) {
 async function updateuser(id, fromwx) {
     // 获取旧的用户信息及其引用 , 如果数据库中不存在 , 则自动新建
     let res = await getuserindb(id);
+    let ref = res.ref;
     delete res["_openid"]
     delete res["_id"]
+    delete res["ref"]
 
     //覆盖旧数据
     let cover = {
@@ -51,7 +53,7 @@ async function updateuser(id, fromwx) {
         }
     }
     //更新数据库中的数据,异步
-    res.ref.update({
+    ref.update({
         data: res
     })
     return res;
