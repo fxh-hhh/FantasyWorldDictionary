@@ -24,6 +24,8 @@ Page({
         let collect = db.collection("records");
         collect.limit(20).where({
             innertype: type
+        }).field({
+            _id: true
         }).get().then(res => {
             this.setData({
                 allclause: res.data

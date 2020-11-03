@@ -45,7 +45,7 @@ Component({
             this.setData({
                 inputVal: key
             })
-            key = key.replace(" ", "");
+            key = key.replace(/\s+/g, "");
             if (key.length > 0) {
                 this.search(key)
             }

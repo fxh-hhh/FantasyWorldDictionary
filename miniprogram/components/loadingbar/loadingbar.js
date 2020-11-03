@@ -6,11 +6,11 @@ Component({
     properties: {
         taillen: {
             type: Number,
-            value: 3
+            value: 10
         },
         interval: {
             type: Number,
-            value: 500
+            value: 50
         },
         off: {
             type: Boolean,

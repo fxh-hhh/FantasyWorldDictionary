@@ -5,12 +5,14 @@
     <image src="{{userdata && userdata.headimage ? userdata.headimage : '../../images/user-unlogin.png'}}"></image>
   </view>
   <block wx:if="{{!onlogin}}">
-    <button type="primary" open-type="getUserInfo" bindgetuserinfo="login">
+    <button type="primary" open-type="getUserInfo" bindgetuserinfo="bindlogin">
       点击登陆
     </button>
   </block>
   <block wx:else>
-    <view class="userNickname">昵称：{{userdata.nickname}}</view>
+    <view class="userNickname">
+      <text>{{userdata.nickname}}</text>
+    </view>
   </block>
 </view>
 <view class="weui-cells weui-cells_after-title">

@@ -2,5 +2,5 @@
 <image class="background" src="../../../images/searchback.jpeg"></image>
 <view class="mainTitle">{{type}}-索引页</view>
 <block wx:for="{{allclause}}" wx:key="_id">
-    <wnavigator clausedata="{{item}}"></wnavigator>
+    <wnavigator wordid="{{item._id}}"></wnavigator>
 </block>

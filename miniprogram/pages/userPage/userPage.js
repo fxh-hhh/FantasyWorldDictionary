@@ -1,9 +1,14 @@
 const {
-  getuserindb
+  getuserindb,
+  getuserref,
+  getuserfields
 } = require("../../utils/getuserindb");
+const {
+  login
+} = require("../../utils/login");
 
 // pages/userPage/userPage.js
-Page({
+let page = Page({
 
   /**
    * 页面的初始数据
@@ -25,70 +30,49 @@ Page({
         title: "联系开发者",
         listUrl: "./contactDeveloper/contactDeveloper",
       }
-    ]
+    ],
+    onlogin: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //自动登录
-    wx.getSetting().then((setting) => {
-      if (setting.authSetting["scope.userInfo"]) {
-        wx.getUserInfo({
-          success: (res => {
-            this.login({
-              detail: res
-            })
-          })
-        })
-      }
-    })
+    
   },
 
-  login: async function (event) {
-    // 获取用户信息
-    let res = event.detail;
-    let id = (await wx.cloud.callFunction({
-      name: "getuserid"
-    })).result.openid;
-    let udata = {
-      wxid: id,
-      ...await this.getdatainapp(id, res.userInfo)
+  onShow: function () {
+    if (!this.data.onlogin) {
+      this.autologin();
     }
-    getApp().globalData.wxid = id;
-    getApp().globalData.onlogin = true;
+  },
+
+  autologin: function () {
+    //自动登录
     this.setData({
-      userdata: udata,
+      onlogin: getApp().globalData.onlogin
+    })
+    if (this.data.onlogin) {
+      getuserfields({
+        headimage: true,
+        nickname: true
+      }).then(res => {
+        this.setData({
+          userdata: res
+        })
+      })
+    }
+  },
+
+  bindlogin: async function (event) {
+    if (getApp().globalData.onlogin) {
+      this.autologin();
+      return;
+    }
+    // 进入登录态
+    this.setData({
+      userdata: await login(event.detail.userInfo),
       onlogin: true
     })
-  },
-
-  getdatainapp: async function (id, fromwx) {
-    let db = wx.cloud.database();
-    let res = await getuserindb(id);
-
-    //默认值
-    let def = [
-      ["nickname", fromwx["nickName"]],
-      ["headimage", fromwx["avatarUrl"]],
-      ["saves", []],
-      ["works", []],
-      ["history", []],
-    ]
-    for (let index in def) {
-      if (!(def[index][0] in res)) {
-        res[def[index][0]] = def[index][1];
-      }
-    }
-
-    delete res["_openid"]
-
-    //更新数据库的缓存
-    res.ref.update({
-      data: res
-    })
-
-    return res;
   }
 });

@@ -1,7 +1,7 @@
 // pages/mainPage/mainPage.js
 
 let {writechoice, getchoice} = require("../../json/writechoice");
-const { getuserindb } = require("../../utils/getuserindb");
+const { getwxid, login } = require("../../utils/login");
 
 Page({
 
@@ -25,6 +25,22 @@ Page({
     this.setData({
       alltype
     });
+    //设置全局wxid
+    getwxid().then((wid) => {
+      //若已经授权则自动登录
+      wx.getSetting().then((setting) => {
+        if (setting.authSetting["scope.userInfo"]) {
+          wx.getUserInfo({
+            success: (res => {
+              login(res.userInfo).then(() => {
+                console.log("dispatch")
+                //dispatchEvent(new CustomEvent("autologin"))
+              })
+            })
+          })
+        }
+      })
+    })
   },
 
   changetype:function(){

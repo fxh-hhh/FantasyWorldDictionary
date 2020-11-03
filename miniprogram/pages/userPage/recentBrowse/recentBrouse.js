@@ -2,10 +2,9 @@ const {
   checklogin
 } = require("../../../utils/checklogin");
 const {
-  getclausebyid
-} = require("../../../utils/getclausebyid");
-const {
-  getuserindb, getuserref
+  getuserindb,
+  getuserref,
+  getuserfields
 } = require("../../../utils/getuserindb");
 const {
   stamptostring
@@ -26,14 +25,14 @@ Page({
    */
   onLoad: async function (options) {
     if (await checklogin()) return;
-    getuserindb().then(userdata => {
+    getuserfields({
+      history: true
+    }).then(res => {
       this.setData({
-        history: userdata.history.map(v => {
-          return {
-            id: v.id,
-            time: stamptostring(v.timestamp)
-          }
-        })
+        history: res.history.map(v => Object({
+          id: v.id,
+          time: stamptostring(v.timestamp)
+        }))
       })
     })
   },
@@ -44,8 +43,8 @@ Page({
     })
     getuserref().then(ref => {
       ref.update({
-        data:{
-          history:wx.cloud.database().command.set([])
+        data: {
+          history: wx.cloud.database().command.set([])
         }
       })
     })

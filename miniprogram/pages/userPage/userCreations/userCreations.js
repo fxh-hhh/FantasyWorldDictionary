@@ -2,7 +2,7 @@ const {
   checklogin
 } = require("../../../utils/checklogin");
 const {
-  getuserindb, getuserref
+  getuserindb, getuserref,getuserfields
 } = require("../../../utils/getuserindb");
 
 // pages/userPage/userCreations/userCreations.js
@@ -12,8 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    worksinfo: [],
-    nativeinfo: []
+    worksinfo: []
   },
 
   /**
@@ -21,9 +20,12 @@ Page({
    */
   onLoad: async function (options) {
     if (await checklogin()) return;
-    let userdata = await getuserindb()
-    this.setData({
-      worksinfo: userdata.works
+    getuserfields({
+      works: true
+    }).then(res => {
+      this.setData({
+        worksinfo: res.works
+      })
     })
   },
 

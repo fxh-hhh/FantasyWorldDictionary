@@ -5,9 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
-    inputVal: "",
-    searchres: []
+    
   },
 
   /**
@@ -16,31 +14,7 @@ Page({
   onLoad: function (options) {
 
   },
-
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    })
-  },
-
-  hideInput: function () {
-    this.setData({
-      inputShowed: false,
-      inputVal: ""
-    })
-  },
-
-  inputTyping: function (event) {
-    let key = event.detail.value.replace(" ", "");
-    this.setData({
-      inputVal: key
-    }, res => {
-      if (key.length > 0) {
-        this.search(key)
-      }
-    })
-  },
-
+  
   search: function (key) {
     let db = wx.cloud.database();
     let anychar = ".*"
@@ -52,6 +26,8 @@ Page({
     let collect = db.collection("records");
     collect.where({
       call: reg
+    }).field({
+      call: true
     }).get().then(res => {
       this.setData({
         searchres: res.data.map(v => {
@@ -61,12 +37,6 @@ Page({
           }
         })
       })
-    })
-  },
-
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
     })
   },
 
